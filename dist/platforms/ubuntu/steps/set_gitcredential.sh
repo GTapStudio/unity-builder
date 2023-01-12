@@ -16,8 +16,15 @@ else
 fi
 git version
 echo "---------- git config --global --add safe.directory -------------"
+git config --global --replace-all safe.directory '*'
 git config --global --add "safe.directory" "*"
-git config --global --get "safe.directory"
+git config --global --add "safe.directory" "/github/workspace"
+git config --global --add "safe.directory" "/github/workspace/*"
+git config --global --get-all "safe.directory"
+git config --replace-all safe.directory '*'
+git config --add "safe.directory" "*"
+git config --add "safe.directory" "/github/workspace"
+git config --add "safe.directory" "/github/workspace/*"
 
 echo "---------- git config --list -------------"
 git config --list
@@ -25,5 +32,3 @@ git config --list
 echo "---------- git config --list --show-origin -------------"
 git config --list --show-origin
 
-echo "---------- git status -------------"
-git status
