@@ -15,6 +15,7 @@ else
   git config --global url."https://git:$GIT_PRIVATE_TOKEN@github.com/".insteadOf "git@github.com:"
 fi
 
+echo "---------- git config --global --add safe.directory -------------"
 git config --global --add safe.directory /github/workspace/*
 
 
