@@ -21,6 +21,7 @@ git version
 echo "---------- git config --global --add safe.directory -------------"
 git config --global --replace-all safe.directory '*'
 git config --global --add "safe.directory" "*"
+git config --global --add "safe.directory" "$GITHUB_WORKSPACE"
 git config --global --add "safe.directory" "/github/workspace"
 git config --global --add "safe.directory" "/github/workspace/*"
 git config --global --get-all "safe.directory"
@@ -28,6 +29,8 @@ git config --replace-all safe.directory '*'
 git config --add "safe.directory" "*"
 git config --add "safe.directory" "/github/workspace"
 git config --add "safe.directory" "/github/workspace/*"
+git config --add "safe.directory" "$GITHUB_WORKSPACE"
+
 
 echo "---------- git config --list -------------"
 git config --list
