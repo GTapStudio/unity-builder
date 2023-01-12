@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+sudo apt-get update
+sudo apt-get install git -y
+git --version 
 
 if [ -z "${GIT_PRIVATE_TOKEN}" ]
 then
