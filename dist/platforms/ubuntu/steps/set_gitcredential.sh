@@ -17,6 +17,7 @@ fi
 git version
 echo "---------- git config --global --add safe.directory -------------"
 git config --global --add "safe.directory" "*"
+git config --global --get "safe.directory"
 
 echo "---------- git config --list -------------"
 git config --list
@@ -24,3 +25,5 @@ git config --list
 echo "---------- git config --list --show-origin -------------"
 git config --list --show-origin
 
+echo "---------- git status -------------"
+git status
