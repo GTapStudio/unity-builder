@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+apt-get install software-properties-common -y
 apt-get update
-apt-get install git -y
+apt install git -y
 git --version 
 
 if [ -z "${GIT_PRIVATE_TOKEN}" ]
@@ -17,7 +18,7 @@ else
   git config --global url."https://ssh:$GIT_PRIVATE_TOKEN@github.com/".insteadOf "ssh://git@github.com/"
   git config --global url."https://git:$GIT_PRIVATE_TOKEN@github.com/".insteadOf "git@github.com:"
 fi
-git version
+
 echo "---------- git config --global --add safe.directory -------------"
 git config --global --replace-all safe.directory '*'
 git config --global --add "safe.directory" "*"
