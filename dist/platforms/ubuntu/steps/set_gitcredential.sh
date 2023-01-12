@@ -14,10 +14,9 @@ else
   git config --global url."https://ssh:$GIT_PRIVATE_TOKEN@github.com/".insteadOf "ssh://git@github.com/"
   git config --global url."https://git:$GIT_PRIVATE_TOKEN@github.com/".insteadOf "git@github.com:"
 fi
-
+git version
 echo "---------- git config --global --add safe.directory -------------"
-git config --global --add safe.directory /github/workspace/*
-
+git config --global --add "safe.directory" "*"
 
 echo "---------- git config --list -------------"
 git config --list
