@@ -70,6 +70,9 @@ class BuildParameters {
   public useLz4Compression!: boolean;
   public garbageCollectionMaxAge!: number;
   public constantGarbageCollection!: boolean;
+  public githubChecks!: boolean;
+  public asyncWorkflow!: boolean;
+  public githubCheckId!: string;
 
   static async create(): Promise<BuildParameters> {
     const buildFile = this.parseBuildFile(Input.buildName, Input.targetPlatform, Input.androidAppBundle);
@@ -153,6 +156,9 @@ class BuildParameters {
       maxRetainedWorkspaces: CloudRunnerOptions.maxRetainedWorkspaces,
       constantGarbageCollection: CloudRunnerOptions.constantGarbageCollection,
       garbageCollectionMaxAge: CloudRunnerOptions.garbageCollectionMaxAge,
+      githubChecks: CloudRunnerOptions.githubChecks,
+      asyncWorkflow: CloudRunnerOptions.asyncCloudRunner,
+      githubCheckId: CloudRunnerOptions.githubCheckId,
     };
   }
 

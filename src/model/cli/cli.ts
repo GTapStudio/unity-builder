@@ -56,7 +56,7 @@ export class Cli {
     program.parse(process.argv);
     Cli.options = program.opts();
 
-    return Cli.isCliMode;
+    return Cli.isCliMode || process.env.GAMECI_CLI;
   }
 
   static async RunCli(): Promise<void> {
@@ -107,6 +107,29 @@ export class Cli {
     const baseImage = new ImageTag(buildParameter);
 
     return await CloudRunner.run(buildParameter, baseImage.toString());
+  }
+
+  @CliFunction(`async-workflow`, `runs a cloud runner build`)
+  public static async asyncronousWorkflow(): Promise<string> {
+    const buildParameter = await BuildParameters.create();
+    const baseImage = new ImageTag(buildParameter);
+    await CloudRunner.setup(buildParameter);
+
+    return await CloudRunner.run(buildParameter, baseImage.toString());
+  }
+
+  @CliFunction(`checks-update`, `runs a cloud runner build`)
+  public static async checksUpdate() {
+    const buildParameter = await BuildParameters.create();
+
+    await CloudRunner.setup(buildParameter);
+    const input = JSON.parse(process.env.CHECKS_UPDATE || ``);
+    core.info(`Checks Update ${process.env.CHECKS_UPDATE}`);
+    if (input.mode === `create`) {
+      throw new Error(`Not supported: only use update`);
+    } else if (input.mode === `update`) {
+      await GitHub.updateGitHubCheckRequest(input.data);
+    }
   }
 
   @CliFunction(`garbage-collect`, `runs garbage collection`)
